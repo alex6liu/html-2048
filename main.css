@@ -1,0 +1,32 @@
+.main-container {
+  width: 450px;
+  height: 450px;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul, li {
+  margin: 0;
+  background: darkorange;
+}
+
+ul {
+  padding: 10px;
+}
+
+.cell {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: burlywood;
+  list-style: none;
+}
+
+li:first-of-type {
+  margin-left: 10px;
+}
+
+.cell + .cell {
+  margin-left: 10px;
+}
