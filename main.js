@@ -13,19 +13,14 @@ const shiftDownArray = () => {};
 const move = (arr2d) => {
   const result = [];
   arr2d.forEach(item => {
-    let temp = [];
-    for(let i=0; i<4; i++ ) {
-      if (item[i]!==0) {
-        if (i<3 && item[i]===item[i+1]) {
-          temp.push(item[i]*2);
-          i += 1;
-        }
-        if (i<3 && item[i]!==item[i+1]) {
-          temp.push(item[i]);
-        }
-        if (i===3) {
-          result.push([item[3], 0, 0, 0]);
-        }
+    let temp = [...item];
+    let sum = 0;
+    temp = temp.filter(item => item !== 0);
+
+    for(let i=0; i<temp.length; i++ ) {
+      if(temp[i] === temp[i+1] && sum === 0) {
+        temp[i] *= 2;
+        temp.splice(i+1, 1);
       }
     }
     let l = temp.length;
