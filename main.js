@@ -21,24 +21,43 @@ const move = (arr2d) => {
       if(temp[i] === temp[i+1] && sum === 0) {
         temp[i] *= 2;
         temp.splice(i+1, 1);
+        sum = 1;
       }
     }
     let l = temp.length;
     for(let i=0;i<4-l;i++){
       temp.push(0)
     }
+    console.log(temp)
     result.push(temp)
   });
 
-  console.log(result.join(",").split(","))
-  return result.join(",").split(",");
+  return result;
 };
 
 // 二维转一维
-const shiftLeftBack = () => {}
+const shiftLeftBack = (arr) => {
+  return arr.join(",").split(",");
+}
 const shiftRightBack = () => {}
 const shiftUpBack = () => {}
 const shiftDownBack = () => {}
+
+// 数字随机位置
+const genNumber = (arr) => {
+  const temp = [...arr];
+  while(true){
+    let pos = Math.floor(Math.random() * 16);
+
+    if (temp[pos] == 0) {
+      temp[pos] = 2;
+
+      break;
+    }
+  }
+
+  return temp;
+}
 
 window.addEventListener('load', () => {
   // init
@@ -50,27 +69,23 @@ window.addEventListener('load', () => {
     index2 = Math.floor(Math.random() * 16);
   }
   array.splice(index2, 1, 2);
-  console.log(array)
+  // console.log(array)
   const li = document.getElementsByClassName('cell');
   li[index1].textContent = 2;
   li[index2].textContent = 2;
   
   window.addEventListener('keydown', (e) => {
-    console.log(e.keyCode)
-    // [0,1,2,3,
-    //  4,5,6,7,
-    //  8,9,10,11,
-    //  12,13,14,15]
 
     //left
     if (e.keyCode === 37) {
-      array = move(shiftLeftArray(array));
+      array = genNumber(shiftLeftBack(move(shiftLeftArray(array))));
+      console.log(array)
       array.forEach((item, index) => {
-        li[index].textContent = item;
-      })
-      li.forEach((item,index) => {
-        if (item === 0);
-        li[index].textContent = null;
+        if (item != 0) {
+          li[index].textContent = item;
+        } else {
+          li[index].textContent = null;
+        }
       })
     }
 
