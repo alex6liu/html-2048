@@ -1,11 +1,17 @@
 // 把一维转为二维
+// 0 1 2 3
+// 4 5 6 7
+// 8 9 10 11
+// 12 13 14 15
 const shiftLeftArray = (arr) => {
   const temp = [...arr];
   const res = [temp.slice(0,4), temp.slice(4,8), temp.slice(8,12), temp.slice(12,16)];
   return res;
 };
 
-const shiftRightArray = () => {};
+const shiftRightArray = (arr) => {
+  return [[arr[3],arr[2],arr[1],arr[0]],[arr[7],arr[6],arr[5],arr[4]],[arr[11],arr[10],arr[9],arr[8]],[arr[15],arr[14],arr[13],arr[12]]]
+};
 const shiftUpArray = () => {};
 const shiftDownArray = () => {};
 
@@ -39,7 +45,9 @@ const move = (arr2d) => {
 const shiftLeftBack = (arr) => {
   return arr.join(",").split(",");
 }
-const shiftRightBack = () => {}
+const shiftRightBack = (arr) => {
+  return [arr[3],arr[2],arr[1],arr[0],arr[7],arr[6],arr[5],arr[4],arr[11],arr[10],arr[9],arr[8],arr[15],arr[14],arr[13],arr[12]];
+}
 const shiftUpBack = () => {}
 const shiftDownBack = () => {}
 
@@ -79,7 +87,7 @@ window.addEventListener('load', () => {
     //left
     if (e.keyCode === 37) {
       array = genNumber(shiftLeftBack(move(shiftLeftArray(array))));
-      console.log(array)
+
       array.forEach((item, index) => {
         if (item != 0) {
           li[index].textContent = item;
@@ -90,10 +98,22 @@ window.addEventListener('load', () => {
     }
 
     //up
-    if (e.keyCode === 38) {}
+    if (e.keyCode === 38) {
+
+    }
 
     //right
-    if (e.keyCode === 39) {}
+    if (e.keyCode === 39) {
+      array = genNumber(shiftRightBack(move(shiftRightArray(array))));
+
+      array.forEach((item, index) => {
+        if (item != 0) {
+          li[index].textContent = item;
+        } else {
+          li[index].textContent = null;
+        }
+      })
+    }
 
     //down
     if (e.keyCode === 40) {}
